@@ -58,6 +58,6 @@ Eisenhorn is on his way to me via air mail and I also ordered the Apothecary and
 
 I'm very excited to start this project!
 
-You can find [Dave's](https://www.davidmn.org/4feldherrenround2/) and [Fab's](http://hacknoir.com/m/2018/03/17/002/) plans for Vier Feldherren on their respective blogs.
+You can find [Dave's](https://www.davidmn.org/4feldherrenround2/), [Fab's](http://hacknoir.com/m/2018/03/17/002/) and [Joe's](https://iosefward.wordpress.com/2018/03/23/vier-feldherren/) plans for Vier Feldherren on their respective blogs.
 
 
