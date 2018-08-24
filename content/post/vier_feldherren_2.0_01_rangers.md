@@ -50,8 +50,6 @@ I bought these models back in my first 40k career during high school, which is w
 
 The pathfinders don't exist as a separate unit any more and I decided to completely press the reset button on all the models: I stripped the paint off of them using nail polish remover and a toothbrush, which worked perfectly. (! Only with metal models !) They had regular 25 mm bases, which I found boring and so I got some [25 mm Temple style resin bases](https://shop.microartstudio.com/en/bases/64-temple-bases-round-25mm-5-5905133597562.html) from Micro Art Studio in Poland. They have a huge variety of modeled bases and I can would recommend them to anyone looking for cool bases.
 
-{{< tweet 942380563373150208 >}}
-
 Since the rangers are metal models, I had to use a saw to create a slot in the bases in which I later placed the minis using green stuff. I was really happy with the result:
 
 {{% figure src="/img/Vier_Feldherren/rangers_on_bases.jpg" %}}
