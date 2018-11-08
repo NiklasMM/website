@@ -1,0 +1,8 @@
+* themes/academic/data/assets.toml: Fontawesome section ersetzen
+
+[css.fontAwesome]
+  version = "5.2.0"
+  url = "https://use.fontawesome.com/releases/v%s/css/all.css"
+
+
+sed -i "s/fa fa-twitter/fab fa-twitter/" public/index.html && sed -i "s/fa fa-mastodon/fab fa-mastodon/" public/index.html && sed -i "s/fa fa-github/fab fa-github/" public/index.html

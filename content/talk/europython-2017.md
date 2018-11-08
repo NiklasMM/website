@@ -40,7 +40,7 @@ tags = ["Python", "Web Development"]
 
 # Links (optional).
 url_pdf = ""
-url_slides = "https://ep2017.europython.eu/media/conference/slides/when-django-is-too-bloated-specialized-web-applications-with-werkzeug.pdf"
+url_slides = "https://speakerdeck.com/niklasmm/when-django-is-too-bloated-specialized-web-applications-with-werkzeug"
 url_video = "https://www.youtube.com/watch?v=mXpBuELtpro"
 url_code = ""
 
