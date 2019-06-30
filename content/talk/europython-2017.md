@@ -1,11 +1,11 @@
 +++
 title = "When Django is too bloated - Specialized Web-Applications with Werkzeug"
-date = 2018-01-12T22:52:01+01:00  # Schedule page publish date.
+datePublished = 2018-01-12T22:52:01+01:00  # Schedule page publish date.
 draft = false
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-time_start = 2017-07-13T16:20:01+01:00
+date = 2017-07-13T16:20:01+01:00
 #time_end = 2018-01-12T22:52:01+01:00
 
 # Abstract and optional shortened version.

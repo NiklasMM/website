@@ -1,12 +1,12 @@
 +++
 title = "Testing in Python - The Big Picture"
-date = 2018-07-02T17:46:42+02:00  # Schedule page publish date.
+publishDate = 2018-07-02T17:46:42+02:00  # Schedule page publish date.
 draft = false
 
 # Talk start and end times.
 #   End time can optionally be hidden by prefixing the line with `#`.
-time_start = 2018-10-24T17:46:42+02:00
-time_end = 2018-10-28T17:46:42+02:00
+date = 2018-10-24T17:45:42+02:00
+
 
 # Abstract and optional shortened version.
 abstract = """

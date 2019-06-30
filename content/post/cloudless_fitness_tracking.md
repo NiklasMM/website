@@ -2,7 +2,7 @@
 title = "Cloudless Fitness Tracking"
 date = 2018-08-24T20:06:21+02:00
 draft = false
-
+authors = ["niklas"]
 # Tags and categories
 # For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
 tags = ["privacy", "review", "sport", "open source", "Android"]

@@ -204,17 +204,22 @@ defaultContentLanguageInSubdir = false
 
   [[params.social]]
     icon = "envelope"
-    icon_pack = "fa"
+    icon_pack = "fas"
     link = "mailto:contact@niklas-meinzer.de"
 
   [[params.social]]
     icon = "twitter"
-    icon_pack = "fa"
+    icon_pack = "fab"
     link = "https://twitter.com/NiklasMM"
 
   [[params.social]]
+    icon = "mastodon"
+    icon_pack = "fab"
+    link = "https://chaos.social/@SevenOfNein"
+
+  [[params.social]]
     icon = "github"
-    icon_pack = "fa"
+    icon_pack = "fab"
     link = "https://github.com/NiklasMM"
 
 
