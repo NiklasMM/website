@@ -3,6 +3,8 @@ title = "Cloudless Fitness Tracking"
 date = 2018-08-24T20:06:21+02:00
 draft = false
 authors = ["niklas"]
+summary = "Most fitness tracking devices come with some sort of cloud service. Here's how you can track your steps without sharing your data with others."
+
 # Tags and categories
 # For example, use `tags = []` for no tags, or the form `tags = ["A Tag", "Another Tag"]` for one or more tags.
 tags = ["privacy", "review", "sport", "open source", "Android"]
