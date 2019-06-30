@@ -36,7 +36,7 @@ social:
   icon_pack: fab
   link: https://twitter.com/NiklasMM
 - icon: mastodon
-  icon_pack: ai
+  icon_pack: fab
   link: https://chaos.social/@SevenOfNein
 - icon: github
   icon_pack: fab
