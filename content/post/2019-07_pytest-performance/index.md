@@ -65,3 +65,68 @@ First of all, I'd like to discuss the motivation behind this project. Why even c
 
 ## Problem analysis
 
+Working on any sort of performance issue, like I was here, is a very specific kind of problem which can become frustrating very quickly, especially if you spring into action to quickly. There are two very important rules:
+
+1) Measure before you do anything. Be absolutely sure that the part of the code you'll be working on is the one that's slowing things down.
+
+2) Optimization anywhere else but at the bottleneck(s) is irrelevant. It may be tempting to shave another couple of milliseconds off that sorting algorithm, but it's not gonna win you anything if that's not the main problem of your application.
+
+If we're transfering this to the slow test suite, we must first find out why the tests are slow and what we can do about it. Of course any improvement will help the overall runtime, but it would surely be most beneficial to find issues affection all or at least many tests.
+
+So here are some things I found helpful when analyzing the problem:
+
+* Pytest comes with the pretty handy option [`--durations`](https://docs.pytest.org/en/latest/usage.html#profiling-test-execution-duration) to list the n slowest tests after a run. This is a pretty low barrier step to get a first idea of which group of tests are causing poblems.
+
+* The [pytest-profiling](https://pypi.org/project/pytest-profiling/) plugin can be used to run the test suite with a profiler. This can give you very good insights but reading profile data can be a bit tricky and may need some getting used to.
+
+* To find out how long the collection phase is, use `--collect-only` and time that.
+
+## Fixing stuff
+
+After profiling and analyzing the problem a bit, I found out, that I had three core problems: The collection phase takes very long. Tests which use a database are somewhat slow (that's about 80 % of all tests) and some tests unneccessarily produce a PDF on the side by making an external call to pdflatex. So let's see how I went about fixing these issues.
+
+### Collection time
+
+The collection phase of the test suite took about 25 seconds. Now that's not too long for a complete run, but keep in mind that pytests needs to collect all tests even if you only want to run a small subset, so this was very annoying during development.
+
+To do anything about that it's important to understand how pytest discovers test: For each test run you give pytest at least one file or directory to find tests in. This can be done via the command line or a pytest.ini config file. Pytest will then import all Python modules from these targets and look for functions and classes defining tests (usually functions with a name starting with `test_` but this behavior can be customized). In our case, although we have all tests placed in a `tests` directory, we had pytest pointed at the root directory of our code base. That way it did discover and run a couple of legacy [doctests](https://docs.pytest.org/en/latest/doctest.html) we had lying around from before the pytest days.
+But it means that before each run, pytest had to import (and possibly compile) the entire code base.
+
+Pointing pytest directly at the `tests` directory greatly improved the collection time, but of course the doctests were no longer found. Left with the decision of either rewriting the doc tests as proper tests in the `tests` directory or giving the 4 or 5 files containing the doctests as additional test files to pytest, we opted for the latter one and decided to not add any more doctests in the future.
+
+### Avoiding external calls
+
+Finding out that a lot of PDFs were generated on the side for each test run was... interesting. I wanted to fix this globally without having to go into each single test and mock it out.
+
+@pytest.fixture(scope="function", autouse=True)
+def pdftools_popen_mock(request):
+    """
+        Mocks away the Popen calls in tools.pdf_exports. There are two external processes which
+        are called from that module:
+
+        * pandoc: The mock just returns an empty string
+        * pdflatex: A copy of the testpage pdf is placed in the requested output dir, so a valid
+                    Pdf is available.
+
+        The mock of pdflatex can be disabled by marking the test with
+        @pytest.mark.dont_mock_pdflatex
+    """
+
+    pdflatex = mock.Mock(returncode=0)
+    pandoc = mock.Mock(communicate=mock.Mock(return_value=[b""]))
+
+    def filtered_Popen(*args, **kwargs):
+        if args[0][0] == "pdflatex" and "dont_mock_pdflatex" not in request.keywords:
+            output_dir = args[0][2]
+            shutil.copy(TESTPAGE_PATH, os.path.join(output_dir, "export.pdf"))
+            return pdflatex
+        elif args[0][0] == "pandoc":
+            return pandoc
+        return Popen(*args, **kwargs)
+
+    with mock.patch("chemocompile.tools.pdf_export.Popen", side_effect=filtered_Popen) as m:
+        yield m
+
+So I took to [Twitter](https://twitter.com/NiklasMM/status/1143142052940718080) to see if anyone had tips on this and I got many resonses helping me to get closer to my goal.
+
+
